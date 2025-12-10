@@ -26,16 +26,19 @@ while True:
       if to_remove in task:
         task.remove(to_remove)
         print(f"{to_remove} has been removed!")
+      else:
+        print(f'{to_remove} not found in the task list!')
 
    elif choice==3:
-      if task is None:
-        print("no task yet!")
+      to_update = input("Enter the task name to update: ")
+      if to_update in task:
+       new_task = input("Enter your new task: ")
+       index = task.index(to_update)
+       task[index] = new_task
+       print(f"{to_update} has been updated with {new_task}!")
       else:
-        to_update=input("enter the task name to update: ")
-        for i,to_update in enumerate(task):
-          new_task=input("enter your new task: ")
-          task[i]=new_task
-          print(f"{to_update} has been updated with {new_task} !")
+        print(f"{to_update} not found in the task list!")
+
    elif choice==4:
        if not task:
          print("no task yet!")
