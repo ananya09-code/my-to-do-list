@@ -19,11 +19,11 @@ while True:
      print(f'{in_task} has been add!')
 
    elif choice==2:
-     if task is None:
+     if not task:
       print("no tasks yet!")
      else:
       to_remove=input("enter the task name to remove:")
-      for to_remove in task:
+      if to_remove in task:
         task.remove(to_remove)
         print(f"{to_remove} has been removed!")
 
