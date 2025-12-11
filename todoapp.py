@@ -17,14 +17,33 @@ def add_task():
      status=input("enter the progress of task(done,not done,in progress): ")
      task[new_task]=status
      print(print(f"task {new_task} with status-{status} has been added!"))
+
+
+def remove_task():
+    if not task:
+        print("there is no tasks yet!")
+    else:
+       task_remove=input("enter the task to remove: ")
+       if task_remove in task:
+           task.pop(task_remove)
+           print(f"task name-{task_remove} has been removed!")
+       else:
+           print(f"task with name-{task_remove} not found!")
+           
+
+    
 while True:
    menu()
-   choice=int(input("enter your choice: "))
+   choice=int(input("enter your choice: ").strip())
    if choice==7:
       print("exiting.....")
       break
    elif choice==1:
        add_task()
+       print(task)
+   elif choice==2:
+       remove_task()
+       print(task)
    
     
   
