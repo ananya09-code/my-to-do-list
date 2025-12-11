@@ -66,7 +66,17 @@ def mark_task_complete():
     else:
        print(f"task with name-{mark_task} not found!")
 
-   
+def  show_completed_tasks():
+   if not task:
+      print("there is no tasks yet!")
+   else:
+      for new_task,status in task.items():
+         if status=="done":
+            print(f"{new_task}-{status}")
+         else:
+            print("there is no done tasks")
+            
+      
 while True:
    menu()
    choice=int(input("enter your choice: ").strip())
@@ -85,5 +95,7 @@ while True:
    elif choice==4:
      mark_task_complete()
      print(task)
+   elif choice==5:
+      show_completed_tasks()
    
    
