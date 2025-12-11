@@ -25,7 +25,6 @@ while True:
       break
    elif choice==1:
        add_task()
-       print(task)
    
     
   
