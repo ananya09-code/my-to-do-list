@@ -75,7 +75,18 @@ def  show_completed_tasks():
             print(f"{new_task}-{status}")
          else:
             print("there is no done tasks")
-            
+
+
+def Show_pending_tasks():
+      if not task:
+       print("there is no tasks yet!")
+      else:
+       for new_task,status in task.items():
+         if status=="in progress" or status=="not done":
+            print(f"{new_task}-{status}")
+         else:
+            print("there is no pending tasks!")
+               
       
 while True:
    menu()
@@ -85,17 +96,21 @@ while True:
       break
    elif choice==1:
        add_task()
-       print(task)
+
    elif choice==2:
        remove_task()
-       print(task)
+
    elif choice==3:
       update_task()
-      print(task)
+
    elif choice==4:
      mark_task_complete()
-     print(task)
+  
    elif choice==5:
       show_completed_tasks()
+      
+   elif choice==6:
+      Show_pending_tasks()
+
    
    
