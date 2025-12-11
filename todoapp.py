@@ -30,6 +30,7 @@ def remove_task():
        else:
            print(f"task with name-{task_remove} not found!")
 
+
 def update_task():
     if not task:
         print("there is no tasks yet!")
@@ -51,7 +52,21 @@ def update_task():
                print("incorrect input try again!")
         else:
            (f"task with name-{task_update} not found!")
-    
+
+
+def mark_task_complete():
+   if not task:
+       print("there is no tasks yet!")
+   else:
+    mark_task=input("enter the task to mark: ")
+    if mark_task in task:
+     done="done"
+     task[mark_task]=done
+     print(f"task name {mark_task} has been marked{done}")
+    else:
+       print(f"task with name-{mark_task} not found!")
+
+   
 while True:
    menu()
    choice=int(input("enter your choice: ").strip())
@@ -67,7 +82,8 @@ while True:
    elif choice==3:
       update_task()
       print(task)
+   elif choice==4:
+     mark_task_complete()
+     print(task)
    
-    
-  
    
