@@ -29,8 +29,28 @@ def remove_task():
            print(f"task name-{task_remove} has been removed!")
        else:
            print(f"task with name-{task_remove} not found!")
-           
 
+def update_task():
+    if not task:
+        print("there is no tasks yet!")
+    else:
+        task_update=input("enter the task to update: ")
+        if task_update in task:
+            what_update=input("enter what to update(descrpoision(d)/progress(p))")
+
+            if what_update=="d":
+             up_task=input("enter the change you want to make: ")
+             task[up_task]=task.pop(task_update)
+             print(f"task-{task_update} has been updated with {up_task}")
+
+            elif what_update=="p":
+             new_status=input("enter new status(done,not done,in progress):")
+             task[task_update]=new_status
+             print(f"task-{task_update} has been updated with status-{new_status}")
+            else:
+               print("incorrect input try again!")
+        else:
+           (f"task with name-{task_update} not found!")
     
 while True:
    menu()
@@ -44,6 +64,9 @@ while True:
    elif choice==2:
        remove_task()
        print(task)
+   elif choice==3:
+      update_task()
+      print(task)
    
     
   
