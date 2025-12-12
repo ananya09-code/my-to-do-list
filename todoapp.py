@@ -25,9 +25,9 @@ def save_task():
   
 def add_task():
      new_task=input("enter your new task: ")
-     status=input("enter the progress of task(done,not done,in progress): ")
+     status=input("enter the progress of task(done,not done,in progress): ").strip().lower()
      task[new_task]=status
-     print(print(f"task {new_task} with status-{status} has been added!"))
+     print(f"task {new_task} with status-{status} has been added!")
      save_task()
 
 
@@ -59,14 +59,14 @@ def update_task():
              save_task()
 
             elif what_update=="p":
-             new_status=input("enter new status(done,not done,in progress):")
+             new_status=input("enter new status(done,not done,in progress):").strip().lower()
              task[task_update]=new_status
              print(f"task-{task_update} has been updated with status-{new_status}")
              save_task()
             else:
                print("incorrect input try again!")
         else:
-           (f"task with name-{task_update} not found!")
+          print(f"task with name-{task_update} not found!")
 
 
 def mark_task_complete():
@@ -77,7 +77,7 @@ def mark_task_complete():
     if mark_task in task:
      done="done"
      task[mark_task]=done
-     print(f"task name {mark_task} has been marked{done}")
+     print(f"task name {mark_task} has been marked {done}")
      save_task()
     else:
        print(f"task with name-{mark_task} not found!")
@@ -86,28 +86,36 @@ def  show_completed_tasks():
    if not task:
       print("there is no tasks yet!")
    else:
+      done_found=False
       for new_task,status in task.items():
          if status=="done":
             print(f"{new_task}-{status}")
-         else:
-            print("there is no done tasks")
+            done_found=True
+      if not done_found:
+         print("there is no done tasks found")
 
 
-def Show_pending_tasks():
+def show_pending_tasks():
       if not task:
        print("there is no tasks yet!")
       else:
+       pending_found=False
        for new_task,status in task.items():
          if status=="in progress" or status=="not done":
             print(f"{new_task}-{status}")
-         else:
-            print("there is no pending tasks!")
+            pending_found=True
+      if not pending_found:
+         print("there is not panding task found!")
                
-      
+load_task()     
 while True:
-   load_task()
    menu()
-   choice=int(input("enter your choice: ").strip())
+   try:
+     choice = int(input("enter your choice: ").strip())
+   except ValueError:
+     print("Please enter a number!")
+     continue
+
    if choice==7:
       print("exiting.....")
       break
@@ -127,7 +135,7 @@ while True:
       show_completed_tasks()
       
    elif choice==6:
-      Show_pending_tasks()
+      show_pending_tasks()
 
    
    
