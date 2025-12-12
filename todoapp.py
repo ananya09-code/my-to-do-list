@@ -1,4 +1,4 @@
-task={}
+import json
 def menu():
    print("_ _  _ _ _ _ _welcome to the app_ _ _ _ _  _  _")
    print("read and select one of the opesions")
@@ -11,12 +11,24 @@ def menu():
    print("7.to exit")
    print("_ _ _ _ _ _ _ _ _ __ _ _ _ _ _ _ _ _ _ _ _ _ _ ")
 
+def load_task():
+   try:
+       global task
+       with open("task0.json", "r") as file:
+        task = json.load(file)
+   except FileNotFoundError:
+     task={}
+    
+def save_task():
+    with open("task0.json", "w") as file:
+        json.dump(task, file, indent=4)
   
 def add_task():
      new_task=input("enter your new task: ")
      status=input("enter the progress of task(done,not done,in progress): ")
      task[new_task]=status
      print(print(f"task {new_task} with status-{status} has been added!"))
+     save_task()
 
 
 def remove_task():
@@ -27,6 +39,7 @@ def remove_task():
        if task_remove in task:
            task.pop(task_remove)
            print(f"task name-{task_remove} has been removed!")
+           save_task()
        else:
            print(f"task with name-{task_remove} not found!")
 
@@ -43,11 +56,13 @@ def update_task():
              up_task=input("enter the change you want to make: ")
              task[up_task]=task.pop(task_update)
              print(f"task-{task_update} has been updated with {up_task}")
+             save_task()
 
             elif what_update=="p":
              new_status=input("enter new status(done,not done,in progress):")
              task[task_update]=new_status
              print(f"task-{task_update} has been updated with status-{new_status}")
+             save_task()
             else:
                print("incorrect input try again!")
         else:
@@ -63,6 +78,7 @@ def mark_task_complete():
      done="done"
      task[mark_task]=done
      print(f"task name {mark_task} has been marked{done}")
+     save_task()
     else:
        print(f"task with name-{mark_task} not found!")
 
@@ -89,6 +105,7 @@ def Show_pending_tasks():
                
       
 while True:
+   load_task()
    menu()
    choice=int(input("enter your choice: ").strip())
    if choice==7:
